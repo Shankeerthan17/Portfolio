@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Files Viewer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="project-details.css">
+</head>
+
+<body>
+
+<div class="glow-bg">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<a href="index.html" class="back-link">← Back to Portfolio</a>
+
+<div class="page-header">
+  <h1>Event Photography Videography Booking System</h1>
+  <div class="underline"></div>
+</div>
+
+<div class="file-layout">
+
+  <div class="left-panel">
+    <div class="project-card-info">
+      <h2>Project Info</h2>
+      <p>A web-based application designed to streamline the booking process for photography and videography services. The system allows users to browse services, check availability, make bookings, and manage appointments efficiently, while enabling service providers to handle schedules, client requests, and payments in a centralized platform.</p>
+
+      <div class="meta">Files: 3</div>
+
+      <button onclick="openViewer()">Open Viewer</button>
+      <a href="index.html" class="btn-outline">Back to Projects</a>
+    </div>
+  </div>
+
+
+  <div class="middle-panel">
+    <h3>Files</h3>
+
+    <div class="file-item" onclick="loadFile('index.html', event)">
+      <span>📄 GitHub Repo</span>
+      <span class="badge">GIT</span>
+    </div>
+
+    <div class="file-item" onclick="loadPDF('pro/2.pdf', event)">
+      <span>📄 PDF Document</span>
+      <span class="badge">PDF</span>
+    </div>
+	
+	<div class="file-item" onclick="loadImage('pro/2.png', event)">
+		<span>🖼️ Image File</span>
+		<span class="badge">PNG</span>
+	</div>
+  </div>
+
+  <div class="right-panel">
+
+    <div class="viewer-header">
+      <h3 id="fileTitle">Select a file to view</h3>
+      <button onclick="toggleReadMode()">Read Mode</button>
+    </div>
+
+    <div id="fileViewer" class="file-viewer">
+      <div class="placeholder">
+        <br><br>
+        Select a file to preview its contents.
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+let files = {
+  "index.html": "<html>HTML file content here</html>",
+  "script.js": "console.log('JS loaded');",
+  "style.css": "body { background:#0f172a; }"
+};
+
+function loadFile(name, event){
+  document.getElementById("fileTitle").innerText = name;
+  document.getElementById("fileViewer").innerText = files[name] || "No preview available";
+
+  document.querySelectorAll(".file-item").forEach(i => i.classList.remove("active"));
+  event.currentTarget.classList.add("active");
+}
+
+
+function loadPDF(file, event){
+  document.getElementById("fileTitle").innerText = file;
+
+  document.getElementById("fileViewer").innerHTML = `
+    <iframe src="${file}" width="100%" height="600px" style="border:none;"></iframe>
+  `;
+
+  document.querySelectorAll(".file-item").forEach(i => i.classList.remove("active"));
+  event.currentTarget.classList.add("active");
+}
+
+function loadImage(file, event){
+  document.getElementById("fileTitle").innerText = file;
+
+  document.getElementById("fileViewer").innerHTML = `
+    <img src="${file}" style="
+      width:100%;
+      max-height:600px;
+      object-fit:contain;
+      border-radius:10px;
+    ">
+  `;
+
+  document.querySelectorAll(".file-item").forEach(i => i.classList.remove("active"));
+  event.currentTarget.classList.add("active");
+}
+
+function toggleReadMode(){
+  document.getElementById("fileViewer").classList.toggle("read-mode");
+}
+
+function openViewer(){
+  alert("Select a file to view");
+}
+
+</script>
+
+</body>
+</html>
