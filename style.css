@@ -794,7 +794,7 @@ padding:100px 0%;
   color:#ffffff;
 }
 
-/* ================= MOBILE FIX ================= */
+/* ================= MOBILE ================= */
 
 @media (max-width: 768px) {
 
@@ -825,28 +825,21 @@ padding:100px 0%;
     padding: 0 10px;
   }
 
-  /* EDUCATION + LANGUAGES */
   .edu-lang-container {
     grid-template-columns: 1fr;
     gap: 40px;
   }
 
-  /* SKILLS */
   .skills-wrapper {
     grid-template-columns: 1fr;
   }
 
-  /* PROJECTS */
   .projects-grid {
     grid-template-columns: 1fr;
   }
-
-  /* CERTIFICATES */
   .cert-grid {
     grid-template-columns: 1fr;
   }
-
-  /* CONTACT */
   .contact-card {
     padding: 25px;
   }
@@ -880,12 +873,10 @@ padding:100px 0%;
 
 @media (max-width: 768px) {
 
-  /* GLOBAL SECTION SPACING FIX */
   section {
     padding: 60px 18px;
   }
 
-  /* HERO FIX */
   .hero h1 {
     font-size: 2.2rem;
     text-align: center;
