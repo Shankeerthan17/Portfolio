@@ -793,3 +793,136 @@ padding:100px 0%;
 .email-text a:hover{
   color:#ffffff;
 }
+
+/* ================= MOBILE FIX ================= */
+
+@media (max-width: 768px) {
+
+  section {
+    padding: 70px 20px;
+  }
+
+  nav {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+
+  .hero-content {
+    padding: 0 10px;
+  }
+
+  /* EDUCATION + LANGUAGES */
+  .edu-lang-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* SKILLS */
+  .skills-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* CERTIFICATES */
+  .cert-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* CONTACT */
+  .contact-card {
+    padding: 25px;
+  }
+
+  .email-row {
+    flex-direction: column;
+    text-align: center;
+  }
+
+}
+
+.cert-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  gap:25px;
+  align-items:stretch;
+}
+
+.cert-card{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+.cert-card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  display:block;
+}
+
+@media (max-width: 768px) {
+
+  /* GLOBAL SECTION SPACING FIX */
+  section {
+    padding: 60px 18px;
+  }
+
+  /* HERO FIX */
+  .hero h1 {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  /* ========== SKILLS ========== */
+  .skills-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  /* ========== PROJECTS ========== */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ========== CERTIFICATES ========== */
+  .cert-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cert-card {
+    margin-bottom: 15px;
+  }
+
+  /* ========== ACHIEVEMENTS ========== */
+  .achieve-container {
+    padding: 25px;
+  }
+
+  /* ========== EDUCATION + LANGUAGES ========== */
+  .edu-lang-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+}
