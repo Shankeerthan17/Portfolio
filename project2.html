@@ -42,20 +42,20 @@
   <div class="middle-panel">
     <h3>Files</h3>
 
-    <div class="file-item" onclick="loadFile('index.html', event)">
-      <span>📄 GitHub Repo</span>
-      <span class="badge">GIT</span>
-    </div>
-
     <div class="file-item" onclick="loadPDF('pro/2.pdf', event)">
       <span>📄 PDF Document</span>
       <span class="badge">PDF</span>
     </div>
 	
-	<div class="file-item" onclick="loadImage('pro/2.png', event)">
-		<span>🖼️ Image File</span>
-		<span class="badge">PNG</span>
-	</div>
+    <div class="file-item" onclick="loadImage('pro/2.png', event)">
+      <span>🖼️ Image File</span>
+      <span class="badge">PNG</span>
+    </div>
+	
+    <div class="file-item" onclick="openGitHubRepo(event)">
+      <span>💻 GitHub Repo</span>
+      <span class="badge">GIT</span>
+    </div>
   </div>
 
   <div class="right-panel">
@@ -78,21 +78,6 @@
 
 <script>
 
-let files = {
-  "index.html": "<html>HTML file content here</html>",
-  "script.js": "console.log('JS loaded');",
-  "style.css": "body { background:#0f172a; }"
-};
-
-function loadFile(name, event){
-  document.getElementById("fileTitle").innerText = name;
-  document.getElementById("fileViewer").innerText = files[name] || "No preview available";
-
-  document.querySelectorAll(".file-item").forEach(i => i.classList.remove("active"));
-  event.currentTarget.classList.add("active");
-}
-
-
 function loadPDF(file, event){
   document.getElementById("fileTitle").innerText = file;
 
@@ -103,6 +88,7 @@ function loadPDF(file, event){
   document.querySelectorAll(".file-item").forEach(i => i.classList.remove("active"));
   event.currentTarget.classList.add("active");
 }
+
 
 function loadImage(file, event){
   document.getElementById("fileTitle").innerText = file;
@@ -120,12 +106,80 @@ function loadImage(file, event){
   event.currentTarget.classList.add("active");
 }
 
+
+function openGitHubRepo(event){
+
+  const githubURL = "https://github.com/IT25100040/Event_Photography_and_Videography_Booking_System.git";
+
+  document.getElementById("fileTitle").innerText = "GitHub Repository";
+
+  document.getElementById("fileViewer").innerHTML = `
+    <div style="
+      text-align:center;
+      padding:70px 30px;
+    ">
+
+      <div style="
+        font-size:70px;
+        margin-bottom:20px;
+      ">
+        💻
+      </div>
+
+      <h2 style="margin-bottom:15px;">
+        GitHub Repository
+      </h2>
+
+      <p style="
+        margin-bottom:25px;
+        line-height:1.7;
+      ">
+        View the complete source code and project files on GitHub.
+      </p>
+
+      <a
+        href="${githubURL}"
+        target="_blank"
+        rel="noopener noreferrer"
+        style="
+          display:inline-block;
+          padding:12px 25px;
+          border-radius:8px;
+          text-decoration:none;
+          background:#38bdf8;
+          color:#0f172a;
+          font-weight:600;
+        "
+      >
+        Open GitHub Repository
+      </a>
+
+    </div>
+  `;
+
+  document.querySelectorAll(".file-item").forEach(i => i.classList.remove("active"));
+  event.currentTarget.classList.add("active");
+}
+
+
 function toggleReadMode(){
   document.getElementById("fileViewer").classList.toggle("read-mode");
 }
 
+
 function openViewer(){
-  alert("Select a file to view");
+
+  const firstFile = document.querySelector(".file-item");
+
+  if(firstFile){
+    firstFile.click();
+  }
+
+  document.querySelector(".right-panel").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
 }
 
 </script>

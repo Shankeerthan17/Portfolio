@@ -29,8 +29,11 @@
   <div class="left-panel">
     <div class="project-card-info">
       <h2>Project Info</h2>
+
 		<p>The network was designed using routers, a core switch, and multiple access switches to ensure efficient data flow and segmentation. Structured cabling was implemented using CAT6 UTP cables, patch panels, and wall outlets to maintain an organized and reliable physical infrastructure.</p>
+
 		<br>
+
 		<p>Wireless connectivity was achieved using Wi-Fi 6 access points, supported by PoE-enabled managed switches for better performance and simplified power management. A centralized 22U rack system was designed for proper equipment organization and maintenance. FTTH (1 Gbps) internet connectivity was integrated to ensure high-speed and stable network access.</p>
 		
       <div class="meta">Files: 3</div>
@@ -44,11 +47,6 @@
   <div class="middle-panel">
     <h3>Files</h3>
 
-    <div class="file-item" onclick="loadFile('pro/3.pkt', event)">
-	<span>📄 Network Design (.pkt)</span>
-	<span class="badge">PKT</span>
-	</div>
-
     <div class="file-item" onclick="loadPDF('pro/3.pdf', event)">
       <span>📄 PDF Document</span>
       <span class="badge">PDF</span>
@@ -58,7 +56,14 @@
 		<span>🖼️ Image File</span>
 		<span class="badge">PNG</span>
 	</div>
+	
+	<div class="file-item" onclick="loadPKT('pro/3.pkt', event)">
+		<span>🌐 Network Design (.pkt)</span>
+		<span class="badge">PKT</span>
+	</div>
+
   </div>
+
 
   <div class="right-panel">
 
@@ -78,6 +83,7 @@
 
 </div>
 
+
 <script>
 
 let files = {
@@ -85,6 +91,7 @@ let files = {
   "script.js": "console.log('JS loaded');",
   "style.css": "body { background:#0f172a; }"
 };
+
 
 function loadFile(name, event){
   document.getElementById("fileTitle").innerText = name;
@@ -99,12 +106,18 @@ function loadPDF(file, event){
   document.getElementById("fileTitle").innerText = file;
 
   document.getElementById("fileViewer").innerHTML = `
-    <iframe src="${file}" width="100%" height="600px" style="border:none;"></iframe>
+    <iframe
+      src="${file}"
+      width="100%"
+      height="600px"
+      style="border:none;">
+    </iframe>
   `;
 
   document.querySelectorAll(".file-item").forEach(i => i.classList.remove("active"));
   event.currentTarget.classList.add("active");
 }
+
 
 function loadImage(file, event){
   document.getElementById("fileTitle").innerText = file;
@@ -122,12 +135,77 @@ function loadImage(file, event){
   event.currentTarget.classList.add("active");
 }
 
+
+function loadPKT(file, event){
+  document.getElementById("fileTitle").innerText = file;
+
+  document.getElementById("fileViewer").innerHTML = `
+    <div style="
+      text-align:center;
+      padding:70px 30px;
+    ">
+
+      <div style="
+        font-size:70px;
+        margin-bottom:20px;
+      ">
+        🌐
+      </div>
+
+      <h2 style="margin-bottom:15px;">
+        Cisco Packet Tracer File
+      </h2>
+
+      <p style="
+        margin-bottom:25px;
+        line-height:1.7;
+      ">
+        .pkt files cannot be previewed directly inside a web browser.
+        Download the file and open it using Cisco Packet Tracer.
+      </p>
+
+      <a
+        href="${file}"
+        download
+        style="
+          display:inline-block;
+          padding:12px 25px;
+          border-radius:8px;
+          text-decoration:none;
+          background:#38bdf8;
+          color:#0f172a;
+          font-weight:600;
+        "
+      >
+        Download PKT File
+      </a>
+
+    </div>
+  `;
+
+  document.querySelectorAll(".file-item").forEach(i => i.classList.remove("active"));
+  event.currentTarget.classList.add("active");
+}
+
+
 function toggleReadMode(){
   document.getElementById("fileViewer").classList.toggle("read-mode");
 }
 
+
 function openViewer(){
-  alert("Select a file to view");
+
+  const firstFile = document.querySelector(".file-item");
+
+  if(firstFile){
+    firstFile.click();
+  }
+
+  document.querySelector(".right-panel").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
 }
 
 </script>

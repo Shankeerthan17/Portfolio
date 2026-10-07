@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Files Viewer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="project-details.css">
+</head>
+
+<body>
+
+<div class="glow-bg">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<a href="index.html" class="back-link">← Back to Portfolio</a>
+
+<div class="page-header">
+  <h1>Concrete Compressive Strength Predictor</h1>
+  <div class="underline"></div>
+</div>
+
+<div class="file-layout">
+
+  <div class="left-panel">
+    <div class="project-card-info">
+      <h2>Project Info</h2>
+
+      <p>Developed as a Year 2, Semester 1 group project for the Artificial Intelligence and Machine Learning module at SLIIT. The application predicts concrete compressive strength using eight inputs representing mix composition and curing age.</p>
+
+      <br>
+
+      <p>The project includes exploratory data analysis, preprocessing, feature selection, PCA, model training, cross-validation, and hyperparameter tuning. A Flask interface allows users to select from six regression models, generate strength predictions in MPa, and compare model performance using MAE, RMSE, and R².</p>
+
+      <div class="meta">Files: 2</div>
+
+      <button onclick="openViewer()">Open Viewer</button>
+      <a href="index.html" class="btn-outline">Back to Projects</a>
+    </div>
+  </div>
+
+
+  <div class="middle-panel">
+    <h3>Files</h3>
+
+    <div class="file-item" onclick="loadPDF('pro/4.pdf', event)">
+      <span>📄 PDF Document</span>
+      <span class="badge">PDF</span>
+    </div>
+
+    <div class="file-item" onclick="loadVideo('pro/4.mp4', event)">
+      <span>🎬 Video File</span>
+      <span class="badge">MP4</span>
+    </div>
+	
+	<div class="file-item" onclick="openGitHubRepo(event)">
+      <span>💻 GitHub Repo</span>
+      <span class="badge">GIT</span>
+    </div>
+  </div>
+
+
+  <div class="right-panel">
+
+    <div class="viewer-header">
+      <h3 id="fileTitle">Select a file to view</h3>
+      <button onclick="toggleReadMode()">Read Mode</button>
+    </div>
+
+    <div id="fileViewer" class="file-viewer">
+      <div class="placeholder">
+        <br><br>
+        Select a file to preview its contents.
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+let files = {
+  "index.html": "<html>HTML file content here</html>",
+  "script.js": "console.log('JS loaded');",
+  "style.css": "body { background:#0f172a; }"
+};
+
+
+function loadFile(name, event){
+  document.getElementById("fileTitle").innerText = name;
+  document.getElementById("fileViewer").innerText = files[name] || "No preview available";
+
+  document.querySelectorAll(".file-item").forEach(i => i.classList.remove("active"));
+  event.currentTarget.classList.add("active");
+}
+
+
+function loadPDF(file, event){
+  document.getElementById("fileTitle").innerText = file;
+
+  document.getElementById("fileViewer").innerHTML = `
+    <iframe
+      src="${file}"
+      width="100%"
+      height="600px"
+      style="border:none; border-radius:10px;">
+    </iframe>
+  `;
+
+  document.querySelectorAll(".file-item").forEach(i => i.classList.remove("active"));
+  event.currentTarget.classList.add("active");
+}
+
+
+function loadImage(file, event){
+  document.getElementById("fileTitle").innerText = file;
+
+  document.getElementById("fileViewer").innerHTML = `
+    <img
+      src="${file}"
+      style="
+        width:100%;
+        max-height:600px;
+        object-fit:contain;
+        border-radius:10px;
+      "
+    >
+  `;
+
+  document.querySelectorAll(".file-item").forEach(i => i.classList.remove("active"));
+  event.currentTarget.classList.add("active");
+}
+
+
+function loadVideo(file, event){
+  document.getElementById("fileTitle").innerText = file;
+
+  document.getElementById("fileViewer").innerHTML = `
+    <video
+      id="projectVideo"
+      width="100%"
+      height="600"
+      controls
+      preload="metadata"
+      playsinline
+      style="
+        width:100%;
+        max-height:600px;
+        object-fit:contain;
+        border-radius:10px;
+        background:#000;
+      "
+    >
+      <source src="${file}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <p id="videoError" style="
+      display:none;
+      margin-top:15px;
+      color:#ff6b6b;
+      text-align:center;
+    ">
+      Video could not be loaded. Please check the MP4 file path or video format.
+    </p>
+  `;
+
+  const video = document.getElementById("projectVideo");
+  const errorMessage = document.getElementById("videoError");
+
+  video.addEventListener("error", function(){
+    errorMessage.style.display = "block";
+  });
+
+  video.load();
+
+  document.querySelectorAll(".file-item").forEach(i => i.classList.remove("active"));
+  event.currentTarget.classList.add("active");
+}
+
+function openGitHubRepo(event){
+
+  const githubURL = "https://github.com/IT25100040/Event_Photography_and_Videography_Booking_System.git";
+
+  document.getElementById("fileTitle").innerText = "GitHub Repository";
+
+  document.getElementById("fileViewer").innerHTML = `
+    <div style="
+      text-align:center;
+      padding:70px 30px;
+    ">
+
+      <div style="
+        font-size:70px;
+        margin-bottom:20px;
+      ">
+        💻
+      </div>
+
+      <h2 style="margin-bottom:15px;">
+        GitHub Repository
+      </h2>
+
+      <p style="
+        margin-bottom:25px;
+        line-height:1.7;
+      ">
+        View the complete source code and project files on GitHub.
+      </p>
+
+      <a
+        href="${githubURL}"
+        target="_blank"
+        rel="noopener noreferrer"
+        style="
+          display:inline-block;
+          padding:12px 25px;
+          border-radius:8px;
+          text-decoration:none;
+          background:#38bdf8;
+          color:#0f172a;
+          font-weight:600;
+        "
+      >
+        Open GitHub Repository
+      </a>
+
+    </div>
+  `;
+
+  document.querySelectorAll(".file-item").forEach(i => i.classList.remove("active"));
+  event.currentTarget.classList.add("active");
+}
+
+
+function toggleReadMode(){
+  document.getElementById("fileViewer").classList.toggle("read-mode");
+}
+
+
+function openViewer(){
+  const firstFile = document.querySelector(".file-item");
+
+  if(firstFile){
+    firstFile.click();
+  }
+
+  document.querySelector(".right-panel").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+</script>
+
+</body>
+</html>

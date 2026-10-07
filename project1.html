@@ -30,10 +30,14 @@
   <div class="left-panel">
     <div class="project-card-info">
       <h2>Project Info</h2>
-	<p>an IoT-based smart gardening system designed to help users monitor and care for their plants efficiently. It uses sensors to track soil moisture, temperature, and environmental conditions, and provides real-time updates to ensure optimal plant health.</p>
-    <br>
-	<p>The system can automatically alert users when plants need water or care, making plant maintenance easier, smarter, and more efficient—especially for busy users or beginners in gardening.</p>
-	  <div class="meta">Files: 1</div>
+
+      <p>an IoT-based smart gardening system designed to help users monitor and care for their plants efficiently. It uses sensors to track soil moisture, temperature, and environmental conditions, and provides real-time updates to ensure optimal plant health.</p>
+
+      <br>
+
+      <p>The system can automatically alert users when plants need water or care, making plant maintenance easier, smarter, and more efficient—especially for busy users or beginners in gardening.</p>
+
+      <div class="meta">Files: 1</div>
 
       <button onclick="openViewer()">Open Viewer</button>
       <a href="index.html" class="btn-outline">Back to Projects</a>
@@ -100,7 +104,18 @@ function toggleReadMode(){
 }
 
 function openViewer(){
-  alert("Select a file to view");
+
+  const firstFile = document.querySelector(".file-item");
+
+  if(firstFile){
+    firstFile.click();
+  }
+
+  document.querySelector(".right-panel").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
 }
 
 </script>
