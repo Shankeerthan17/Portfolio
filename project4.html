@@ -17,7 +17,7 @@
   <span></span>
 </div>
 
-<a href="index.html" class="back-link">← Back to Portfolio</a>
+<a href="javascript:void(0)" class="back-link" onclick="goBack()">← Back to Portfolio</a>
 
 <div class="page-header">
   <h1>Concrete Compressive Strength Predictor</h1>
@@ -36,10 +36,10 @@
 
       <p>The project includes exploratory data analysis, preprocessing, feature selection, PCA, model training, cross-validation, and hyperparameter tuning. A Flask interface allows users to select from six regression models, generate strength predictions in MPa, and compare model performance using MAE, RMSE, and R².</p>
 
-      <div class="meta">Files: 2</div>
+      <div class="meta">Files: 3</div>
 
       <button onclick="openViewer()">Open Viewer</button>
-      <a href="index.html" class="btn-outline">Back to Projects</a>
+      <a href="javascript:void(0)" class="btn-outline" onclick="goBack()">Back to Projects</a>
     </div>
   </div>
 
@@ -254,6 +254,20 @@ function openViewer(){
     behavior: "smooth",
     block: "start"
   });
+  
+  function goBack(){
+
+  if(document.referrer){
+
+    window.history.back();
+
+  }else{
+
+    window.location.href = "index.html#projects";
+
+  }
+
+}
 }
 
 </script>

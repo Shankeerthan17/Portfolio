@@ -178,10 +178,12 @@ section{
   border-radius:10px;
 }
 
+/* UPDATED */
 .section-subtitle{
   text-align:center;
   color:#94a3b8;
-  max-width:600px;
+  width:100%;
+  max-width:none;
   margin:0 auto 40px;
   line-height:1.6;
 }
@@ -689,9 +691,11 @@ section{
   margin:6px 0 12px 0;
 }
 
+/* UPDATED */
 .achieve-header p{
   color:#94a3b8;
-  max-width:600px;
+  width:100%;
+  max-width:none;
   line-height:1.6;
 }
 
@@ -782,17 +786,22 @@ section{
   margin:auto;
   padding:45px;
   border-radius:22px;
+
   background:linear-gradient(
     145deg,
     rgba(255,255,255,.08),
     rgba(148,163,184,.06)
   );
+
   backdrop-filter:blur(18px);
   -webkit-backdrop-filter:blur(18px);
+
   border:1px solid rgba(255,255,255,.12);
+
   box-shadow:
     0 15px 40px rgba(0,0,0,.55),
     0 0 20px rgba(148,163,184,.08);
+
   text-align:center;
   transition:.3s ease;
 }
@@ -827,10 +836,13 @@ section{
   align-items:center;
   justify-content:center;
   gap:12px;
+
   padding:14px 18px;
   border-radius:14px;
+
   background:rgba(255,255,255,.06);
   border:1px solid rgba(255,255,255,.1);
+
   max-width:420px;
   margin:auto;
   transition:.3s ease;

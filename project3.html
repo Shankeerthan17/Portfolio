@@ -17,7 +17,7 @@
   <span></span>
 </div>
 
-<a href="index.html" class="back-link">← Back to Portfolio</a>
+<a href="javascript:void(0)" class="back-link" onclick="goBack()">← Back to Portfolio</a>
 
 <div class="page-header">
   <h1>Scalable Enterprise Network Design for a Two-Floor Office Environment</h1>
@@ -39,7 +39,7 @@
       <div class="meta">Files: 3</div>
 
       <button onclick="openViewer()">Open Viewer</button>
-      <a href="index.html" class="btn-outline">Back to Projects</a>
+      <a href="javascript:void(0)" class="btn-outline" onclick="goBack()">Back to Projects</a>
     </div>
   </div>
 
@@ -205,6 +205,20 @@ function openViewer(){
     behavior: "smooth",
     block: "start"
   });
+  
+  function goBack(){
+
+  if(document.referrer){
+
+    window.history.back();
+
+  }else{
+
+    window.location.href = "index.html#projects";
+
+  }
+
+}
 
 }
 
