@@ -31,7 +31,7 @@
       <h2>Project Info</h2>
       <p>A web-based application designed to streamline the booking process for photography and videography services. The system allows users to browse services, check availability, make bookings, and manage appointments efficiently, while enabling service providers to handle schedules, client requests, and payments in a centralized platform.</p>
 
-      <div class="meta">Files: 3</div>
+      <div class="meta">Files: 4</div>
 
       <button onclick="openViewer()">Open Viewer</button>
       <a href="index.html" class="btn-outline">Back to Projects</a>
@@ -45,6 +45,11 @@
     <div class="file-item" onclick="loadPDF('pro/2.pdf', event)">
       <span>📄 PDF Document</span>
       <span class="badge">PDF</span>
+    </div>
+	
+	<div class="file-item" onclick="loadVideo('pro/2.mp4', event)">
+      <span>🎬 Video File</span>
+      <span class="badge">MP4</span>
     </div>
 	
     <div class="file-item" onclick="loadImage('pro/2.png', event)">
@@ -84,6 +89,52 @@ function loadPDF(file, event){
   document.getElementById("fileViewer").innerHTML = `
     <iframe src="${file}" width="100%" height="600px" style="border:none;"></iframe>
   `;
+
+  document.querySelectorAll(".file-item").forEach(i => i.classList.remove("active"));
+  event.currentTarget.classList.add("active");
+}
+
+function loadVideo(file, event){
+  document.getElementById("fileTitle").innerText = file;
+
+  document.getElementById("fileViewer").innerHTML = `
+    <video
+      id="projectVideo"
+      width="100%"
+      height="600"
+      controls
+      preload="metadata"
+      playsinline
+      style="
+        width:100%;
+        max-height:600px;
+        object-fit:contain;
+        border-radius:10px;
+        background:#000;
+      "
+    >
+      <source src="${file}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <p id="videoError" style="
+      display:none;
+      margin-top:15px;
+      color:#ff6b6b;
+      text-align:center;
+    ">
+      Video could not be loaded. Please check the MP4 file path or video format.
+    </p>
+  `;
+
+  const video = document.getElementById("projectVideo");
+  const errorMessage = document.getElementById("videoError");
+
+  video.addEventListener("error", function(){
+    errorMessage.style.display = "block";
+  });
+
+  video.load();
 
   document.querySelectorAll(".file-item").forEach(i => i.classList.remove("active"));
   event.currentTarget.classList.add("active");
